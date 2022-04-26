@@ -94,9 +94,8 @@
 
   const mainProducer = json.keys.reduce((template="", post) => {
     if (post.metadata?.type === "producer")
-      template += `<input type="radio" name="main-producer-logo" value=${post.name} />
+       return template += `<input type="radio" name="main-producer-logo" value=${post.name} />
              <label for="main-producer-logo">${post.name}</label><br>`;
-    return template;
   })
 
 
