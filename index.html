@@ -88,12 +88,15 @@
     ` <input type="text" name="producer-url" placeholder="Producer website url" size="30" />`)
 
 
-
-  const json = await (await fetch("/list")).json();
-  const producers = json.keys.filter(post=>  post.metadata?.type === "producer");
-
+  const json = await(await fetch("/list")).json();
+  const producers = json.keys.filter(post => post.metadata?.type === "producer");
 
 
+  const mainProducer = json.keys.reduce((template, post) => {
+    if (post.metadata?.type === "producer")
+      template += `<input type="radio" name="main-producer-logo" value=${post.name} />
+             <label for="main-producer-logo">${post.name}</label><br>`
+  })
 
 
   const feturedImage = makeMetabox("Feture image", `<input type="file" name="image">`);
@@ -102,17 +105,17 @@
   //const dataWithNameMetadata = await POSTS.list();
 
 
-
-
   const form = document.querySelector("form");
 
 
   [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
     const postType = this.getAttribute("type");
     if (postType === "video")
-      form.innerHTML = setType(postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
+      form.innerHTML = setType(
+        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
     if (postType === "episode")
-      form.innerHTML = setType(postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
+      form.innerHTML = setType(
+        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
     if (postType === "producer")
       form.innerHTML = setType(postType) + title + producerUrl + feturedImage + submitBtn;
   }))
