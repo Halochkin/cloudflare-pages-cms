@@ -94,7 +94,14 @@
 
   const feturedImage = makeMetabox("Feture image", `<input type="file" name="image">`);
 
-  const submitBtn = `<input type="submit">`;
+  
+  function preSubmit() {
+    let arr = [...document.querySelectorAll('input:checked[name=additional-producers[]')].map(function(element) { return element.value});
+    document.querySelector("#additional-producers[]").value = arr.join(",");
+
+  }
+  
+  const submitBtn = `<input type="submit" onsubmit="preSubmit()">`;
   //const dataWithNameMetadata = await POSTS.list();
 
 
