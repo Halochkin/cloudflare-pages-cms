@@ -97,7 +97,7 @@
     return html;
   }, ''));
 
-  const mainProducer = makeMetabox("Select additional producers", json.keys.reduce(function (html, post) {
+  const additionalProducers = makeMetabox("Select additional producers", json.keys.reduce(function (html, post) {
     if (post.metadata?.type === "producer") {
       html += `<input type="checkbox" name="main-producer-logo" value=${post.name} /><label for="main-producer-logo">${post.name}</label><br>`;
     }
@@ -118,12 +118,12 @@
     const postType = this.getAttribute("type");
     if (postType === "video")
       form.innerHTML = setType(
-        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
+        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer +additionalProducers + submitBtn;
     if (postType === "episode")
       form.innerHTML = setType(
-        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
+        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer +additionalProducers + submitBtn;
     if (postType === "producer")
-      form.innerHTML = setType(postType) + title + producerUrl + feturedImage + mainProducer + submitBtn;
+      form.innerHTML = setType(postType) + title + producerUrl + feturedImage + mainProducer +  submitBtn;
   }))
 
 
