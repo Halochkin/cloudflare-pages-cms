@@ -86,9 +86,9 @@
 
   const additionalProducers = makeMetabox("Select additional producers", json.keys.reduce(function (html, post) {
     if (post.metadata?.type === "producer") {
-      html += `<input type="checkbox" name="additional-producer[]" value=${post.name} /><label for="additional-producer">${post.name.toUpperCase()}</label><br>`;
+      html += `<input type="checkbox" name="additional-producers[]" value=${post.name} /><label for="additional-producers[]">${post.name.toUpperCase()}</label><br>`;
     }
-    return html;
+    return html + "<input id='my_match' type='hidden' name='additional-producers[]' />";
   }, ''));
 
 
