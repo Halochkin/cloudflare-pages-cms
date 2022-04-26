@@ -52,7 +52,7 @@
 </div>
 
 
-<script>
+<script type="module">
 
   function makeMetabox(title, element) {
     let res = `
@@ -87,7 +87,10 @@
   const producerUrl = makeMetabox("Producer url",
     ` <input class="widefat" type="text" name="producer-url" placeholder="Producer website url" size="30" />`)
 
-  const producers = txt.keys.filter(post=>  post.metadata?.type === "producer");
+
+
+  // const json = await (await fetch("/list")).json();
+  const producers = json.keys.filter(post=>  post.metadata?.type === "producer");
 
 
 
