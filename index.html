@@ -103,16 +103,16 @@
 
   [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
     const postType = this.getAttribute("type");
-    // if (postType === "video")
-    //   form.innerHTML = setType(
-    //     postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer + additionalProducers + submitBtn;
-    // if (postType === "episode")
-    //   form.innerHTML = setType(
-    //     postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer + additionalProducers + submitBtn;
-    // if (postType === "producer")
-    //   form.innerHTML = setType(postType) + title + producerUrl + feturedImage  + submitBtn;
+    if (postType === "video")
+      form.innerHTML = setType(
+        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer + additionalProducers + submitBtn;
+    if (postType === "episode")
+      form.innerHTML = setType(
+        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer + additionalProducers + submitBtn;
+    if (postType === "producer")
+      form.innerHTML = setType(postType) + title + producerUrl + feturedImage  + submitBtn;
 
-    const txt = json.keys.map(printPost(postType)).join('\n');
+    // const txt = json.keys.map(printPost(postType)).join('\n');
   }))
 
 
