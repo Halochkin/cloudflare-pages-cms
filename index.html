@@ -97,10 +97,10 @@
   //todo: ugly shit
   function preSubmit() {
     let arr = [...document.querySelectorAll('input:checked[name=additional-producers')].map(function(element) { return element.value});
-    document.querySelector("#additional-producers[]").value = arr.join(",");
-
+    document.querySelector("#additional-producers").value = arr.join(",");
   }
-  
+
+  const submitBtn = `<input type="submit" value="Submmit" />`
 
   //const dataWithNameMetadata = await POSTS.list();
 
