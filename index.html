@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="style/style.css">
+
 <h1>list of posts</h1>
 
 <script type="module">
@@ -11,16 +13,16 @@
       </li>`;
   }
 
-  window.editPost = async function(slug){
-    const postJson = await(await fetch(`/post/${slug}.json`)).json();
+  window.editPost = async function (slug) {
+    const postJson = await (await fetch(`/post/${slug}.json`)).json();
     const title = document.querySelector("[name='title']");
     title.value = postJson.title;
     const short = document.querySelector("[name='short']");
     short.value = postJson.short;
     //image isn't working here yet
   }
-  
-  const json = await (await fetch("/list")).json();
+
+  const json = await(await fetch("/list")).json();
   const txt = json.keys.map(printPost).join('\n');
   const h1 = document.querySelector("h1");
   h1.insertAdjacentHTML("afterend", txt);
@@ -28,16 +30,81 @@
 
 
 <!--2. check the form before allowing a submit, and then do the submit via a script instead.-->
-<h2>Add or update a post</h2>
-<form action="" method="POST" enctype="multipart/form-data">
-  <input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a character)<br>
-  <input type="text" name="short"> <br>
-<!--  <input type="hidden" name="image-href">-->
-  <input type="file" name="image"> <br>
-  <input type="submit">
-</form>
+
+
+<div id="container">
+    <ul class="tabs">
+        <li class="tab" type="video">Videos</li>
+        <li class="tab" type="serie">Series</li>
+        <li class="tab" type="episode">Episodes</li>
+        <li class="tab" type="producer">Producer</li>
+    </ul>
+    <div class="tab-content">
+        <h2>Add or update a post</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+
+            <!--            <input type="text" name="short"> <br>-->
+            <!--            &lt;!&ndash;  <input type="hidden" name="image-href">&ndash;&gt;-->
+            <!--            <input type="file" name="image"> <br>-->
+            <!--            <input type="submit">-->
+        </form>
+    </div>
+</div>
+
 
 <script>
+
+  function makeMetabox(title, element) {
+    let res = `
+    <div class="meta_frame">
+     <div class="meta_header"><h2 class="meta_title">${title}</h2></div>
+    <div class="meta_input">
+     ${element}
+    </div>
+   </div>
+    `;
+    return res;
+  }
+
+function setType(type) {
+ return `<input type="hidden" name="type" value=${type} />`
+}
+
+  const tabContainer = document.querySelector(".tab-content");
+
+  const title = makeMetabox("Title ",
+    `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>`);
+
+  const shortDescription = makeMetabox("Short description",
+    `<textarea placeholder="Write several sentences here" type="text" name="short-text"size="30" required></textarea>`);
+
+  const fullDescription = makeMetabox("Full description",
+    `<textarea placeholder="Write full description here" class="widefat" rows="10" name="full-text" size="30"></textarea>`);
+
+  const youtubeUrl = makeMetabox("Youtube url",
+    `<input class="widefat" type="text" name="youtube-url-input" size="30" required />`);
+
+  const producerUrl = makeMetabox("Producer url",
+    ` <input class="widefat" type="text" name="producer-url" placeholder="Producer website url" size="30" />`)
+
+
+  const submitBtn = `<input type="submit">`;
+  //const dataWithNameMetadata = await POSTS.list();
+
+  const form = document.querySelector("form");
+
+
+  [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
+    const postType = this.getAttribute("type");
+    if (postType === "video")
+      form.innerHTML = setType(postType) + title + shortDescription + fullDescription + youtubeUrl + submitBtn;
+    if (postType === "episode")
+      form.innerHTML = setType(postType) +title + shortDescription + fullDescription + youtubeUrl + submitBtn;
+    if(postType === "producer")
+      form.innerHTML = setType(postType) +title + producerUrl + submitBtn;
+  }))
+
+
   window.makeSlug = function (el) {
     const slug = el.value.toLowerCase().replaceAll(/[^a-z_\s-]/g, "").replaceAll(/\s/g, "_");
     //todo check this slug against existing elements.
