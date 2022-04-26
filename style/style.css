@@ -44,3 +44,9 @@ textarea {
     line-height: 1.42857;
     resize: vertical;
 }
+
+#container{
+    display: grid;
+    grid-template-areas: "tabs list";
+    grid-template-columns: 1fr 4fr;
+}
