@@ -1,0 +1,46 @@
+<h1>list of posts</h1>
+
+<script type="module">
+  function printPost({name: slug, metadata: {title, timestamp}}) {
+    return `
+      <li>
+        <a href="/post/${slug}.html">${title} (timestamp: ${timestamp})</a>
+        <a href="/post/${slug}.json">(as json)</a><br>
+        <button onclick="editPost('${slug}')">edit</button><br>
+        <a href="/delete/${slug}">delete this post</a>
+      </li>`;
+  }
+
+  window.editPost = async function(slug){
+    const postJson = await(await fetch(`/post/${slug}.json`)).json();
+    const title = document.querySelector("[name='title']");
+    title.value = postJson.title;
+    const short = document.querySelector("[name='short']");
+    short.value = postJson.short;
+    //image isn't working here yet
+  }
+  
+  const json = await (await fetch("/list")).json();
+  const txt = json.keys.map(printPost).join('\n');
+  const h1 = document.querySelector("h1");
+  h1.insertAdjacentHTML("afterend", txt);
+</script>
+
+
+<!--2. check the form before allowing a submit, and then do the submit via a script instead.-->
+<h2>Add or update a post</h2>
+<form action="" method="POST" enctype="multipart/form-data">
+  <input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a character)<br>
+  <input type="text" name="short"> <br>
+<!--  <input type="hidden" name="image-href">-->
+  <input type="file" name="image"> <br>
+  <input type="submit">
+</form>
+
+<script>
+  window.makeSlug = function (el) {
+    const slug = el.value.toLowerCase().replaceAll(/[^a-z_\s-]/g, "").replaceAll(/\s/g, "_");
+    //todo check this slug against existing elements.
+    el.form.setAttribute("action", `/set/${slug}`);
+  }
+</script>
