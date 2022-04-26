@@ -66,9 +66,9 @@
     return res;
   }
 
-function setType(type) {
- return `<input type="hidden" name="type" value=${type} />`
-}
+  function setType(type) {
+    return `<input type="hidden" name="type" value=${type} />`
+  }
 
   const tabContainer = document.querySelector(".tab-content");
 
@@ -87,9 +87,19 @@ function setType(type) {
   const producerUrl = makeMetabox("Producer url",
     ` <input class="widefat" type="text" name="producer-url" placeholder="Producer website url" size="30" />`)
 
+  const producers = txt.keys.filter(post=>  post.metadata?.type === "producer");
+
+
+
+
+
+  const feturedImage = makeMetabox("Feture image", `<input type="file" name="image">`);
 
   const submitBtn = `<input type="submit">`;
   //const dataWithNameMetadata = await POSTS.list();
+
+
+
 
   const form = document.querySelector("form");
 
@@ -97,11 +107,11 @@ function setType(type) {
   [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
     const postType = this.getAttribute("type");
     if (postType === "video")
-      form.innerHTML = setType(postType) + title + shortDescription + fullDescription + youtubeUrl + submitBtn;
+      form.innerHTML = setType(postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
     if (postType === "episode")
-      form.innerHTML = setType(postType) +title + shortDescription + fullDescription + youtubeUrl + submitBtn;
-    if(postType === "producer")
-      form.innerHTML = setType(postType) +title + producerUrl + submitBtn;
+      form.innerHTML = setType(postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
+    if (postType === "producer")
+      form.innerHTML = setType(postType) + title + producerUrl + feturedImage + submitBtn;
   }))
 
 
