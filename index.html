@@ -88,7 +88,7 @@
     if (post.metadata?.type === "producer") {
       html += `<input type="checkbox" name="additional-producers" value=${post.name} /><label for="additional-producers">${post.name[0].toUpperCase() + post.name.slice(1)}</label><br>`;
     }
-    return html;
+    return html + `<input type="hidden" name="additional-producers" />`;
   }, ''));
 
 
@@ -96,7 +96,7 @@
 
   //todo: ugly shit
   function preSubmit() {
-    let arr = [...document.querySelectorAll('input:checked[name=additional-producers[]')].map(function(element) { return element.value});
+    let arr = [...document.querySelectorAll('input:checked[name=additional-producers')].map(function(element) { return element.value});
     document.querySelector("#additional-producers[]").value = arr.join(",");
 
   }
