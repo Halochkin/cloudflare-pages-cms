@@ -122,6 +122,7 @@
     // const txt = json.keys.map(printPost(postType)).join('\n');
   }))
 
+  form.addEventListener("submit", preSubmit);
 
   window.makeSlug = function (el) {
     const slug = el.value.toLowerCase().replaceAll(/[^a-z_\s-]/g, "").replaceAll(/\s/g, "_");
