@@ -92,10 +92,11 @@
   const producers = json.keys.filter(post => post.metadata?.type === "producer");
 
 
-  const mainProducer = json.keys.reduce((template, post) => {
+  const mainProducer = json.keys.reduce((template="", post) => {
     if (post.metadata?.type === "producer")
       template += `<input type="radio" name="main-producer-logo" value=${post.name} />
-             <label for="main-producer-logo">${post.name}</label><br>`
+             <label for="main-producer-logo">${post.name}</label><br>`;
+    return template;
   })
 
 
@@ -117,7 +118,7 @@
       form.innerHTML = setType(
         postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
     if (postType === "producer")
-      form.innerHTML = setType(postType) + title + producerUrl + feturedImage + submitBtn;
+      form.innerHTML = setType(postType) + title + producerUrl + feturedImage + mainProducer +submitBtn;
   }))
 
 
