@@ -82,14 +82,14 @@
     `<textarea placeholder="Write full description here" class="widefat" rows="10" name="full-text" size="30"></textarea>`);
 
   const youtubeUrl = makeMetabox("Youtube url",
-    `<input class="widefat" type="text" name="youtube-url-input" size="30" required />`);
+    `<input type="text" name="youtube-url-input" size="30" required />`);
 
   const producerUrl = makeMetabox("Producer url",
-    ` <input class="widefat" type="text" name="producer-url" placeholder="Producer website url" size="30" />`)
+    ` <input type="text" name="producer-url" placeholder="Producer website url" size="30" />`)
 
 
 
-  // const json = await (await fetch("/list")).json();
+  const json = await (await fetch("/list")).json();
   const producers = json.keys.filter(post=>  post.metadata?.type === "producer");
 
 
