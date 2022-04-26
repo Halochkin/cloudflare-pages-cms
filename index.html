@@ -90,12 +90,19 @@
 
   const json = await(await fetch("/list")).json();
 
-  const mainProducer = json.keys.reduce(function (html, post) {
+  const mainProducer = makeMetabox("Select main producer", json.keys.reduce(function (html, post) {
     if (post.metadata?.type === "producer") {
       html += `<input type="radio" name="main-producer-logo" value=${post.name} /><label for="main-producer-logo">${post.name}</label><br>`;
     }
     return html;
-  }, '');
+  }, ''));
+
+  const mainProducer = makeMetabox("Select additional producers", json.keys.reduce(function (html, post) {
+    if (post.metadata?.type === "producer") {
+      html += `<input type="checkbox" name="main-producer-logo" value=${post.name} /><label for="main-producer-logo">${post.name}</label><br>`;
+    }
+    return html;
+  }, ''));
 
 
   const feturedImage = makeMetabox("Feture image", `<input type="file" name="image">`);
