@@ -88,7 +88,7 @@
     if (post.metadata?.type === "producer") {
       html += `<input type="checkbox" name="additional-producers" value=${post.name} /><label for="additional-producers">${post.name[0].toUpperCase() + post.name.slice(1)}</label><br>`;
     }
-    return html + `<input type="hidden" name="additional-producers" />`;
+    return html + `<input type="hidden" id="additional-producers" name="additional-producers" />`;
   }, ''));
 
 
