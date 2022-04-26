@@ -1,6 +1,21 @@
 <link rel="stylesheet" href="style/style.css">
 
+<div id="container">
+    <ul class="tabs">
+        <li class="tab" type="video">Videos</li>
+        <li class="tab" type="serie">Series</li>
+        <li class="tab" type="episode">Episodes</li>
+        <li class="tab" type="producer">Producer</li>
+    </ul>
+    <div class="tab-content">
+        <h2>Add or update a post</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+
+        </form>
+    </div>
+</div>
 <h1>list of posts</h1>
+
 
 <script type="module">
   function printPost({name: slug, metadata: {title, timestamp}}) {
@@ -26,29 +41,7 @@
   // const txt = json.keys.map(printPost).join('\n');
   const h1 = document.querySelector("h1");
   h1.insertAdjacentHTML("afterend", txt);
-</script>
 
-
-<!--2. check the form before allowing a submit, and then do the submit via a script instead.-->
-
-
-<div id="container">
-    <ul class="tabs">
-        <li class="tab" type="video">Videos</li>
-        <li class="tab" type="serie">Series</li>
-        <li class="tab" type="episode">Episodes</li>
-        <li class="tab" type="producer">Producer</li>
-    </ul>
-    <div class="tab-content">
-        <h2>Add or update a post</h2>
-        <form action="" method="POST" enctype="multipart/form-data">
-
-        </form>
-    </div>
-</div>
-
-
-<script type="module">
 
   function makeMetabox(title, element) {
     let res = `
@@ -83,8 +76,6 @@
   const producerUrl = makeMetabox("Producer url",
     ` <input type="text" name="producer-url" placeholder="Producer website url" size="30" />`)
 
-
-  const json = await(await fetch("/list")).json();
 
   const mainProducer = makeMetabox("Select main producer", json.keys.reduce(function (html, post) {
     if (post.metadata?.type === "producer") {
