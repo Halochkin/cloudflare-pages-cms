@@ -84,15 +84,15 @@
     return html;
   }, ''));
 
-  const additionalProducers = makeMetabox("Select additional producers", '<input type="hidden" id="additional-producers" name="additional-producers" />' + json.keys.reduce(function (html, post) {
+  const additionalProducers = makeMetabox("Select additional producers", json.keys.reduce(function (html, post) {
     if (post.metadata?.type === "producer") {
       html += `<input type="checkbox" name="additional-producers" value=${post.name} /><label for="additional-producers">${post.name[0].toUpperCase() + post.name.slice(1)}</label><br>`;
     }
     return html;
-  }, ''));
+  }, '') + '<input type="hidden" id="additional-producers" name="additional-producers" />');
 
 
-  const feturedImage = makeMetabox("Feture image", `<input type="file" name="image">`);
+  const feturedImage = makeMetabox("Feature image", `<input type="file" name="image">`);
 
   //todo: ugly shit
   function preSubmit() {
