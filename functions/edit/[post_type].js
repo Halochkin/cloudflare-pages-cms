@@ -13,9 +13,9 @@
 
 export async function onRequest({params: {post_type}, env}) {
 
-  // const json = await(await fetch("/list")).json();
+  const json = await(await fetch("/list")).json();
   // const txt = json.keys.map(printPost).join('\n');
- const text = `<h1>Suka</h1>`
+ const text = `<h1>Suka, ${post_type}</h1>`
 
 
   return new Response(text, {headers: {"Content-Type": "text/html"}});
