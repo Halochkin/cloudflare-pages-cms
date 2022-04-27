@@ -55,7 +55,7 @@
     return res;
   }
 
-  function setType(type) {
+  function makeHiddenInput(type) {
     return `<input type="hidden" name="type" value=${type} />`
   }
 
@@ -89,7 +89,7 @@
       html += `<input type="checkbox" name="additional-producers" value=${post.name} /> ${post.name[0].toUpperCase() + post.name.slice(1)}<br>`;
     }
     return html;
-  }, '') );
+  }, '') + '<input type="hidden" id="additional-producers" name="additional-producers" />');
 
 
   const feturedImage = makeMetabox("Feature image", `<input type="file" name="image">`);
@@ -111,18 +111,18 @@
   [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
     const postType = this.getAttribute("type");
     if (postType === "video")
-      form.innerHTML = setType(
+      form.innerHTML = makeHiddenInput(
         postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer + additionalProducers + submitBtn;
     if (postType === "episode")
-      form.innerHTML = setType(
+      form.innerHTML = makeHiddenInput(
         postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer + additionalProducers + submitBtn;
     if (postType === "producer")
-      form.innerHTML = setType(postType) + title + producerUrl + feturedImage  + submitBtn;
+      form.innerHTML = makeHiddenInput(postType) + title + producerUrl + feturedImage  + submitBtn;
 
     // const txt = json.keys.map(printPost(postType)).join('\n');
   }))
 
-  // form.addEventListener("submit", preSubmit);
+  form.addEventListener("submit", preSubmit);
 
   window.makeSlug = function (el) {
     const slug = el.value.toLowerCase().replaceAll(/[^a-z_\s-]/g, "").replaceAll(/\s/g, "_");
