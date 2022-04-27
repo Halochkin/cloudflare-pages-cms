@@ -18,10 +18,10 @@ export async function onRequest({params: {post_slug}, env}) {
 
   const post = await env.POSTS.get(post_slug);
 
-
+  const metadata = JSON.parse(post);
 
   const title = makeMetabox("Title ",
-    `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=${post.metadata.title}>(title must start with a  character)<br>`);
+    `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=${metadata.title}>(title must start with a  character)<br>`);
 
 
   return new Response(post, {headers: {"Content-Type": "application/json"}});
