@@ -21,7 +21,7 @@ export async function onRequest({params: {post_slug}, env}) {
 
 
   const title = makeMetabox("Title ",
-    `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=${post.title}>(title must start with a  character)<br>`);
+    `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=${post.metadata.title}>(title must start with a  character)<br>`);
 
 
   return new Response(title, {headers: {"Content-Type": "text/html"}});
