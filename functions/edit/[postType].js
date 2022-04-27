@@ -11,17 +11,15 @@ function printPost({name: slug, metadata: {title, timestamp}}) {
 
 
 
-export async function onRequestPost({request, params: {postId: slug}, env}) {
+export async function onRequest({params: {post_type}, env}) {
 
-
-  debugger
   const json = await(await fetch("/list")).json();
   const txt = json.keys.map(printPost).join('\n');
-  debugger;
+
 
   const h1 = document.querySelector("h1");
 
 
 
-  return new Response("asss", {headers: {"Content-Type": "text/html"}});
+  return new Response(txt, {headers: {"Content-Type": "text/html"}});
 }
