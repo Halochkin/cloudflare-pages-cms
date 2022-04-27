@@ -13,11 +13,19 @@ export async function onRequest({params: {post_type}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = json.keys.map(printPost).join('\n');
+  const filtered = json.keys.reduce(function (html, post) {
+    if (post.metadata?.type === post_type) {
+      html += printPost(post);
+    }
+    return html;
+  }, '')
+
+
+  // const html = .keys.map(printPost).join('\n');
   // const text = `<!--<h1>Suka, ${post_type? post_type : "ass"}</h1>-->`
 
 
-  return new Response(html, {headers: {"Content-Type": "text/html"}});
+  return new Response(filtered, {headers: {"Content-Type": "text/html"}});
 
 
 }
