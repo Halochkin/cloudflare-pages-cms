@@ -16,4 +16,4 @@ export async function onRequest({params: {post_type}, env}) {
   // const text = `<!--<h1>Suka, ${post_type? post_type : "ass"}</h1>-->`
 
 
-  return new Response(post, {headers: {"Content-Type": "application/json"}});}
+  return new Response(json, {headers: {"Content-Type": "application/json"}});}
