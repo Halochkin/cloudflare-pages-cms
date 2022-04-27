@@ -24,7 +24,7 @@ export async function onRequest({params: {post_slug}, env}) {
     `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=${metadata.title}>(title must start with a  character)<br>`);
 
 
-  return new Response(post, {headers: {"Content-Type": "application/json"}});
+  return new Response(title, {headers: {"Content-Type": "text/html"}});
 
 
 }
