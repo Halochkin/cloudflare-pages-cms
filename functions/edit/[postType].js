@@ -17,9 +17,6 @@ export async function onRequest({params: {post_type}, env}) {
   const txt = json.keys.map(printPost).join('\n');
 
 
-  const h1 = document.querySelector("h1");
-
-
 
   return new Response(txt, {headers: {"Content-Type": "text/html"}});
 }
