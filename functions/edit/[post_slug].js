@@ -11,20 +11,23 @@ function makeMetabox(title, element) {
 }
 
 
-
-
-
 export async function onRequest({params: {post_slug}, env}) {
 
   const post = await env.POSTS.get(post_slug);
 
   const metadata = JSON.parse(post);
+  const post_type = metadata.type;
+
 
   const title = makeMetabox("Title ",
     `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=${metadata.title}>(title must start with a  character)<br>`);
 
+  const shortDescription = makeMetabox("Short description",
+    `<textarea placeholder="Write several sentences here" type="text" name="short-text" size="30" required value=${metadata.short_text}></textarea>`);
 
-  return new Response(title, {headers: {"Content-Type": "text/html"}});
+  // if(post_type === "video")
+
+  return new Response(title + shortDescription, {headers: {"Content-Type": "text/html"}});
 
 
 }
