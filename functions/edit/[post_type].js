@@ -11,7 +11,7 @@ function printPost({name: slug, metadata: {title, timestamp}}) {
 
 export async function onRequest({params: {post_type}, env}) {
 
-  const json = await (await POSTS.list()).json();
+  // const json = await (await POSTS.list()).json();
   // const txt = json.keys.map(printPost).join('\n');
   const text = `<h1>Suka, ${post_type? post_type : "ass"}</h1>`
 
