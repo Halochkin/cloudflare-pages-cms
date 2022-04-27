@@ -23,7 +23,7 @@ export async function onRequest({params: {post_slug}, env}) {
     `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=${metadata.title}>(title must start with a  character)<br>`);
 
   const shortDescription = makeMetabox("Short description",
-    `<textarea placeholder="Write several sentences here" type="text" name="short_text" size="30" required value=${metadata.short_text}></textarea>`);
+    `<textarea placeholder="Write several sentences here" type="text" name="short_text" size="30" required >${metadata.short_text}</textarea>`);
 
   // if(post_type === "video")
 
