@@ -177,28 +177,27 @@ const form = `
 
 
 
-const script = `
-<script>
+
 function makeMetabox(title, element) {
-  let res = \`
+  let res = `
     <div class="meta_frame">
      <div class="meta_header"><h2 class="meta_title">${title}</h2></div>
     <div class="meta_input">
      ${element}
     </div>
    </div>
-    \`;
+    `;
   return res;
 }
 
   window.makeSlug = function (el) {
     const slug = el.value.toLowerCase().replaceAll(/[^a-z_\\s-]/g, "").replaceAll(/\\s/g, "_");
     //todo check this slug against existing elements.
-    el.form.setAttribute("action", \`/set/${slug}\`);
+    el.form.setAttribute("action", `/set/${slug}`);
   }
   
 const tabContainer = document.querySelector(".tab-content");
-const title = makeMetabox("Title ",\`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>\`);
+const title = makeMetabox("Title ", `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>`);
 
   [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
     const postType = this.getAttribute("type");
@@ -207,13 +206,13 @@ const title = makeMetabox("Title ",\`<input type="text" name="title" pattern="[a
         postType) + title;
   
   }));
-</script>`;
+
 
 export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = container + makeTabMenu(json) + form + script + `</div>`;
+  const html = container + makeTabMenu(json) + form + `</div>`;
 
 
   // const title = makeMetabox("Title ",
