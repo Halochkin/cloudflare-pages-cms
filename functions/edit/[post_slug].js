@@ -156,12 +156,14 @@ function makeTabMenu(posts) {
         }
         return html;
       }, ` <li>
-              <div class="link"><i class="fa fa-paint-brush"></i>${postType[0].toUpperCase() + postType.slice(1)}<i class="fa fa-chevron-down"></i></div>
+              <div class="link">${postType[0].toUpperCase() + postType.slice(1)}</div>
               <ul class="submenu">`);
-      res += `</ul>
-                </li>`;
+
+      res += `</ul></li>`;
   }
-  return style + res + `</ul>`;
+  return style +
+    res +
+    `</ul>`;
 }
 
 export async function onRequest({params: {post_slug}, env}) {
