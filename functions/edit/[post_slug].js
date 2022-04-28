@@ -190,29 +190,15 @@ function makeMetabox(title, element) {
   return res;
 }
 
-  window.makeSlug = function (el) {
-    const slug = el.value.toLowerCase().replaceAll(/[^a-z_\\s-]/g, "").replaceAll(/\\s/g, "_");
-    //todo check this slug against existing elements.
-    el.form.setAttribute("action", `/set/${slug}`);
-  }
-  
-const tabContainer = document.querySelector(".tab-content");
-const title = makeMetabox("Title ", `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>`);
 
-  [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
-    const postType = this.getAttribute("type");
-    if (postType === "video")
-      form.innerHTML = makeHiddenInput(
-        postType) + title;
-  
-  }));
 
+const template = `<script src="script.js"></script>`
 
 export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = container + makeTabMenu(json) + form + `</div>`;
+  const html = container + makeTabMenu(json) + form + template + `</div>`;
 
 
   // const title = makeMetabox("Title ",
