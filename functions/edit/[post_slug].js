@@ -151,10 +151,11 @@ function makeTabMenu(posts) {
 
   for (const postType of postTypes) {
       res += posts.keys.reduce(function (html, post) {
+        html += post.metadata.type;
         if (post.metadata?.type === postType) {
           html += printPost(post);
         }
-        return html += post.metadata.type;
+        return html;
       }, ` <li>
               <div class="link">${postType[0].toUpperCase() + postType.slice(1)}</div>
               <ul class="submenu">`);
