@@ -154,7 +154,7 @@ function makeTabMenu(posts) {
         if (post.metadata?.type === postType) {
           html += printPost(post);
         }
-        return html;
+        return html += post.metadata.type;
       }, ` <li>
               <div class="link">${postType[0].toUpperCase() + postType.slice(1)}</div>
               <ul class="submenu">`);
