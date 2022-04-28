@@ -175,20 +175,22 @@ const form = `
  </div>`;
 
 
+
+
+const script = `
+<script>
 function makeMetabox(title, element) {
-  let res = `
+  let res = \`
     <div class="meta_frame">
      <div class="meta_header"><h2 class="meta_title">${title}</h2></div>
     <div class="meta_input">
      ${element}
     </div>
    </div>
-    `;
+    \`;
   return res;
 }
 
-const script = `
-<script>
   window.makeSlug = function (el) {
     const slug = el.value.toLowerCase().replaceAll(/[^a-z_\\s-]/g, "").replaceAll(/\\s/g, "_");
     //todo check this slug against existing elements.
@@ -205,7 +207,7 @@ const title = makeMetabox("Title ",\`<input type="text" name="title" pattern="[a
         postType) + title;
   
   }));
-</script>`
+</script>`;
 
 export async function onRequest({params: {post_slug}, env}) {
 
