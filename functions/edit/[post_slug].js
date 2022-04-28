@@ -151,7 +151,7 @@ function makeTabMenu(posts) {
 
   for (const postType of postTypes) {
       res += posts.keys.reduce(function (html, post) {
-        html += post?.type;
+        html += post.metadata?.type;
         if (post.metadata?.type === postType) {
           html += printPost(post);
         }
