@@ -53,7 +53,7 @@ h1 a {
 .accordion {
   width: 100%;
   max-width: 360px;
-  margin: 30px auto 20px;
+  margin: 20px 20px 20px;
   background: #FFF;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -138,7 +138,8 @@ h1 a {
   background: #b63b4d;
   color: #FFF;
 }
-</style>`
+</style>
+`
 
 function printPost({name: slug, metadata: {title, timestamp}}) {
   return `<li><a href=${slug}>${title}</a></li>`;
