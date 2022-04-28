@@ -149,27 +149,69 @@ function makeTabMenu(posts) {
   let res = '<ul id="accordion" class="accordion">';
 
   for (const postType of postTypes) {
-      res += posts.keys.reduce(function (html, post) {
-        if (post.metadata?.type === postType) {
-          html += printPost(post);
-        }
-        return html;
-      }, ` <li>
+    res += posts.keys.reduce(function (html, post) {
+      if (post.metadata?.type === postType) {
+        html += printPost(post);
+      }
+      return html;
+    }, ` <li>
               <div class="link">${postType[0].toUpperCase() + postType.slice(1)}</div>
               <ul class="submenu">`);
 
-      res += `</ul></li>`;
+    res += `</ul></li>`;
   }
   return style +
     res +
     `</ul>`;
 }
 
+
+const container = `<div id="container">`;
+
+const form = ` 
+ <div class="tab-content">
+    <h2>Add or update a post</h2>
+    <form action="" method="POST" enctype="multipart/form-data"></form>
+ </div>`;
+
+
+function makeMetabox(title, element) {
+  let res = `
+    <div class="meta_frame">
+     <div class="meta_header"><h2 class="meta_title">${title}</h2></div>
+    <div class="meta_input">
+     ${element}
+    </div>
+   </div>
+    `;
+  return res;
+}
+
+const script = `
+<script>
+  window.makeSlug = function (el) {
+    const slug = el.value.toLowerCase().replaceAll(/[^a-z_\\s-]/g, "").replaceAll(/\\s/g, "_");
+    //todo check this slug against existing elements.
+    el.form.setAttribute("action", \`/set/${slug}\`);
+  }
+  
+const tabContainer = document.querySelector(".tab-content");
+const title = makeMetabox("Title ",\`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>\`);
+
+  [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
+    const postType = this.getAttribute("type");
+    if (postType === "video")
+      form.innerHTML = makeHiddenInput(
+        postType) + title;
+  
+  }));
+</script>`
+
 export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = makeTabMenu(json);
+  const html = container + makeTabMenu(json) + form + script + `</div>`;
 
 
   // const title = makeMetabox("Title ",
