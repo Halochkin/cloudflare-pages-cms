@@ -38,9 +38,9 @@
   }
 
   const json = await (await fetch("/list")).json();
-  // const txt = json.keys.map(printPost).join('\n');
-  // const h1 = document.querySelector("h1");
-  // h1.insertAdjacentHTML("afterend", txt);
+  const txt = json.keys.map(printPost).join('\n');
+  const h1 = document.querySelector("h1");
+  h1.insertAdjacentHTML("afterend", txt);
 
 
   function makeMetabox(title, element) {
