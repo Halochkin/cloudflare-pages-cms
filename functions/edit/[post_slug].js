@@ -114,7 +114,6 @@ h1 a {
  * Submenu
  -----------------------------*/
 .submenu {
-  display: none;
   background: #444359;
   font-size: 14px;
 }
