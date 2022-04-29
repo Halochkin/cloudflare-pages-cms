@@ -145,7 +145,7 @@ function printPost({name: slug, metadata: {title, type}}) {
 
 function makeTabMenu(posts) {
   const postTypes = ["video", "episode", "serie", "producer"];
-  let res = '<ul id="accordion" class="accordion">';
+  let res = '<link rel="stylesheet" href="../../style/style.css"><ul id="accordion" class="accordion">';
 
   for (const postType of postTypes) {
     res += posts.keys.reduce(function (html, post) {
@@ -197,6 +197,7 @@ function makeMetabox(title, element) {
 }
 
 const title = (val)=> makeMetabox("Title ", \`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value='\${val}' onChange="makeSlug(this)">(title must start with a  character)<br>\`);
+
 
 [...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", async function (e) {
    e.preventDefault();
