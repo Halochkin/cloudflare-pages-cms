@@ -182,9 +182,9 @@ h1 a {
 }
 
 .add_ico{
+    color: green;
+    display: none;
     font-size: 30px;
-    /* font-weight: 700; */
-    /* background-color: red; */
     margin-left: 10%;
     position: absolute;
     vertical-align: baseline;
