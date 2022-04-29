@@ -196,12 +196,12 @@ function makeMetabox(title, element) {
   return res;
 }
 
-const title = (val)=> makeMetabox("Title ", \`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=\${val} onChange="makeSlug(this)">(title must start with a  character)<br>\`);
+const title = (val)=> makeMetabox("Title ", \`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value='\${val}' onChange="makeSlug(this)">(title must start with a  character)<br>\`);
 
 [...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", async function (e) {
    e.preventDefault();
   const slug = this.getAttribute("href");
-  const metadata = await (await fetch(\`/post/${slug}.json\`)).json();
+  const metadata = await (await fetch(\`/post/\${slug}.json\`)).json();
   console.log(metadata)
   const postType = this.getAttribute("type");
   console.log("click");
