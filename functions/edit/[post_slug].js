@@ -185,7 +185,8 @@ function makeMetabox(title, element) {
 }
 
 
-const template = `<script src="script.js">
+const template = `
+<script>
 
 console.log("ass");
 </script>`
