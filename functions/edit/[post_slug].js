@@ -78,7 +78,7 @@ export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = style + container + makeTabMenu(json) + form + `</div>` + template(post_slug) ;
+  const html = container + makeTabMenu(json) + form + `</div>` + template(post_slug) ;
 
 
 
