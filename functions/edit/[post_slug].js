@@ -1,6 +1,3 @@
-
-
-
 function printPost({name: slug, metadata: {title, type}}) {
   return `<li><a class="post_item" type=${type} href=${slug}>${title}</a></li>`;
 }
@@ -34,8 +31,6 @@ const form = `
  </div>`;
 
 
-
-
 const template = (slug) => `
 <script >
 const form = document.querySelector("form");
@@ -60,7 +55,8 @@ function makeMetabox(title, element) {
 
 const title = (val)=> makeMetabox("Title ", \`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value='\${val}' onChange="makeSlug(this)">(title must start with a  character)<br>\`);
 const shortDescription = (val)=> makeMetabox("Short description",  \`<textarea placeholder="Write several sentences here" type="text" name="short-text" size="30" required>'\${val}'</textarea>\`);
-
+const fullDescription = (val)=> makeMetabox("Full description",    \`<textarea placeholder="Write full description here" class="widefat" rows="10" name="full_text" size="30">\${val}</textarea>\`);
+ 
 [...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", async function (e) {
    e.preventDefault();
   const slug = this.getAttribute("href");
@@ -69,7 +65,7 @@ const shortDescription = (val)=> makeMetabox("Short description",  \`<textarea p
   const postType = this.getAttribute("type");
   console.log("click");
   if (postType === "video"){
-    form.innerHTML = title(metadata.title) + shortDescription(metadata.short_text);
+    form.innerHTML = title(metadata.title) + shortDescription(metadata.short_text) + fullDescription(metadata.full_text);
     }
 }))
 </script>`
@@ -78,9 +74,7 @@ export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = container + makeTabMenu(json) + form + `</div>` + template(post_slug) ;
-
-
+  const html = container + makeTabMenu(json) + form + `</div>` + template(post_slug);
 
 
   // const title = makeMetabox("Title ",
