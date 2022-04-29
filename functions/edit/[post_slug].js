@@ -181,12 +181,12 @@ export async function onRequest({params: {post_slug}, env}) {
 
 
 
-  let scriptHtml = "<script> const script = await fetch(\"/getscript\"); </script>";
+  let scriptHtml = '<script> const script = await fetch(\"/getscript\"); </script>';
 
   const html = style + container + makeTabMenu(json) + form + `</div>` + scriptHtml ;
 
 
-  console.log(script);
+
 
   // const title = makeMetabox("Title ",
   //   `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=${metadata.title}>(title must start with a  character)<br>`);
