@@ -112,7 +112,7 @@
   const form = document.querySelector("form");
 
 
-  [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
+  [...document.querySelectorAll(".link")].map(item => item.addEventListener("click", function () {
     const postType = this.getAttribute("type");
     if (postType === "video")
       form.innerHTML = makeHiddenInput(
