@@ -178,6 +178,9 @@ const template = (slug) => `
 <script >
 const form = document.querySelector("form");
 
+
+
+
 window.makeSlug = function (el) {
   const slug = el.value.toLowerCase().replaceAll(/[^a-z_\\s-]/g, "").replaceAll(/\\s/g, "_");
   el.form.setAttribute("action", \`/set/ \${slug}\`);
@@ -193,15 +196,17 @@ function makeMetabox(title, element) {
   return res;
 }
 
-const title = makeMetabox("Title ",
-  \`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>\`);
+const title = (val)=> makeMetabox("Title ", \`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value=\${val} onChange="makeSlug(this)">(title must start with a  character)<br>\`);
 
-[...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", function (e) {
-   // e.preventDefault();
+[...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", async function (e) {
+   e.preventDefault();
+  const slug = this.getAttribute("href);
+  const metadata = await (await fetch(\`/post/${slug}.json\`)).json();
+  console.log(metadata)
   const postType = this.getAttribute("type");
   console.log("click");
   if (postType === "video")
-    form.innerHTML = title;
+    form.innerHTML = title(metadata.title);
 }))
 </script>`
 
@@ -209,7 +214,7 @@ export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = style + container + makeTabMenu(json) + form + `</div>` + template(post_slug) ;
+  const html = style + container + makeTabMenu(json) + form + `</div>` + template(post_slug, env) ;
 
 
 
