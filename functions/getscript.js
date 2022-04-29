@@ -35,5 +35,5 @@ const template = `
 
 
 export async function onRequest({env: {POSTS}}) {
-  return new Response(template, {headers: {"Content-Type": "text/plain"}});
+  return new Response(template, {headers: {"Content-Type": "text/javascript"}});
 }
