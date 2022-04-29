@@ -182,14 +182,18 @@ h1 a {
 }
 
 .add_ico{
-    font-size: 10px;
-    color: green;
-    display: none;
+    font-size: 30px;
+    /* font-weight: 700; */
+    /* background-color: red; */
+    margin-left: 10%;
+    position: absolute;
+    vertical-align: baseline;
+    top: 15%;
 }
 
 
 .tab:hover > b {
-    display: block;
+    display: contents;
     transform: scale(1.3);
     transition-duration: 1s;
 }
