@@ -174,7 +174,7 @@ const form = `
 
 
 
-let script = `<script type="text/plain" src="script.js"></script>`
+let script = `<script type="text/plain" src="../script.js"></script>`
 
 export async function onRequest({params: {post_slug}, env}) {
 
