@@ -69,7 +69,7 @@ const shortDescription = (val)=> makeMetabox("Short description",  \`<textarea p
   const postType = this.getAttribute("type");
   console.log("click");
   if (postType === "video"){
-    form.innerHTML = title(metadata.title) + shortDescription(metadata.short_description);
+    form.innerHTML = title(metadata.title) + shortDescription(metadata.title);
     }
 }))
 </script>`
@@ -78,7 +78,7 @@ export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = style + container + makeTabMenu(json) + form + `</div>` + template(post_slug, env) ;
+  const html = style + container + makeTabMenu(json) + form + `</div>` + template(post_slug) ;
 
 
 
