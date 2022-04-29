@@ -192,11 +192,11 @@ const template = `
   window.makeSlug = function (el) {
     const slug = el.value.toLowerCase().replaceAll(/[^a-z_\\s-]/g, "").replaceAll(/\\s/g, "_");
     //todo check this slug against existing elements.
-    el.form.setAttribute("action", \`/set/${slug}\`);
+    el.form.setAttribute("action", "/set/${slug}");
   }
 
 
- const title = makeMetabox("Title ",  <input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>);
+ const title = makeMetabox("Title ",  "<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>");
 
 [...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", function () {
   const postType = this.getAttribute("type");
