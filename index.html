@@ -2,10 +2,10 @@
 
 <div id="container">
     <ul id="accordion" class="accordion">
-        <li class="link" type="video">Videos</li>
-        <li class="link" type="serie">Series</li>
-        <li class="link" type="episode">Episodes</li>
-        <li class="link" type="producer">Producer</li>
+        <li class="tab" type="video">Videos</li>
+        <li class="tab" type="serie">Series</li>
+        <li class="tab" type="episode">Episodes</li>
+        <li class="tab" type="producer">Producer</li>
     </ul>
     <div class="tab-content">
         <h2>Add or update a post</h2>
@@ -112,7 +112,7 @@
   const form = document.querySelector("form");
 
 
-  [...document.querySelectorAll(".link")].map(item => item.addEventListener("click", function () {
+  [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
     const postType = this.getAttribute("type");
     if (postType === "video")
       form.innerHTML = makeHiddenInput(

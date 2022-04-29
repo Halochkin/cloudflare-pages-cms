@@ -13,7 +13,7 @@ function makeTabMenu(posts) {
       }
       return html;
     }, ` <li>
-              <div class="link">${postType[0].toUpperCase() + postType.slice(1)}</div>
+              <div class="tab">${postType[0].toUpperCase() + postType.slice(1)}<b class="add_ico">+</b></div>
               <ul class="submenu">`);
 
     res += `</ul></li>`;

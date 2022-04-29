@@ -100,7 +100,7 @@ h1 a {
     border-radius: 4px;
 }
 
-.accordion .link {
+.accordion .tab {
     cursor: pointer;
     display: block;
     text-align: center;
@@ -136,7 +136,7 @@ h1 a {
     font-size: 16px;
 }
 
-.accordion li.open .link {
+.accordion li.open .tab {
     color: #b63b4d;
 }
 
@@ -183,4 +183,16 @@ h1 a {
     margin: 20px;
     background-color: wheat;
     padding: 20px;
+}
+
+.add_ico{
+    font-size: 10px;
+    color: green;
+    display: none;
+}
+
+.tab:hover:last-child {
+    display: block;
+    transform: scale(1.3);
+    transition-duration: 1s;
 }
