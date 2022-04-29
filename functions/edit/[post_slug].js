@@ -179,11 +179,7 @@ export async function onRequest({params: {post_slug}, env}) {
   const json = await env.POSTS.list();
 
 
-
-
-  let scriptHtml = '<script> const script = await fetch(\"/getscript\"); </script>';
-
-  const html = style + container + makeTabMenu(json) + form + `</div>` + scriptHtml ;
+  const html = style + container + makeTabMenu(json) + form + `</div>` ;
 
 
 
