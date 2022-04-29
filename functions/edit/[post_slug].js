@@ -69,7 +69,7 @@ const shortDescription = (val)=> makeMetabox("Short description",  \`<textarea p
   const postType = this.getAttribute("type");
   console.log("click");
   if (postType === "video"){
-    form.innerHTML = title(metadata.title) + shortDescription(metadata.title);
+    form.innerHTML = title(metadata.title) + shortDescription(metadata.short_text);
     }
 }))
 </script>`
