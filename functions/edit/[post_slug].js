@@ -59,7 +59,7 @@ function makeMetabox(title, element) {
 }
 
 const title = (val)=> makeMetabox("Title ", \`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" value='\${val}' onChange="makeSlug(this)">(title must start with a  character)<br>\`);
-const shortDescription = (val)=> makeMetabox("Short description",  \`<textarea placeholder="Write several sentences here" type="text" name="short-text" size="30" required>\${val}</textarea>\`);
+const shortDescription = (val)=> makeMetabox("Short description",  \`<textarea placeholder="Write several sentences here" type="text" name="short-text" size="30" required>'\${val}'</textarea>\`);
 
 [...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", async function (e) {
    e.preventDefault();
