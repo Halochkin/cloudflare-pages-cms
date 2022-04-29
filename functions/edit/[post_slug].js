@@ -198,7 +198,7 @@ export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = container + makeTabMenu(json) + form + template + `</div>`;
+  const html = container + makeTabMenu(json) + form +  `</div>` + template;
 
 
   // const title = makeMetabox("Title ",
