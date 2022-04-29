@@ -200,7 +200,7 @@ const title = (val)=> makeMetabox("Title ", \`<input type="text" name="title" pa
 
 [...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", async function (e) {
    e.preventDefault();
-  const slug = this.getAttribute("href);
+  const slug = this.getAttribute("href");
   const metadata = await (await fetch(\`/post/${slug}.json\`)).json();
   console.log(metadata)
   const postType = this.getAttribute("type");
