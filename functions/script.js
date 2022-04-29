@@ -4,14 +4,14 @@ const form = document.querySelector("form");
 
 window.makeSlug = function (el) {
   const slug = el.value.toLowerCase().replaceAll(/[^a-z_\\s-]/g, "").replaceAll(/\\s/g, "_");
-  el.form.setAttribute("action", \`/set/${slug}\`);
+  el.form.setAttribute("action", \`/set/ + '$' + {slug}\`);
 }
 
 function makeMetabox(title, element) {
   let res = \`
     <div class="meta_frame">
-     <div class="meta_header"><h2 class="meta_title">${title}</h2></div>
-    <div class="meta_input">${element}</div>
+     <div class="meta_header"><h2 class="meta_title">+ '$' +{title}</h2></div>
+    <div class="meta_input">+ '$' +{element}</div>
    </div>
     \`;
   return res;
