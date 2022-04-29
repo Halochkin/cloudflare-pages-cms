@@ -212,7 +212,7 @@ export async function onRequest({params: {post_slug}, env}) {
   const json = await env.POSTS.list();
 
 
-  const script = await fetch("/script");
+  const script = await fetch("/getscript");
 
   let scriptHtml = "<script>" + script + "</script>";
 
