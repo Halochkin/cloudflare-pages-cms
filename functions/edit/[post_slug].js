@@ -137,8 +137,7 @@ h1 a {
   background: #b63b4d;
   color: #FFF;
 }
-</style>
-`
+</style>`;
 
 function printPost({name: slug, metadata: {title, timestamp}}) {
   return `<li><a href=${slug}>${title}</a></li>`;
@@ -160,9 +159,7 @@ function makeTabMenu(posts) {
 
     res += `</ul></li>`;
   }
-  return style +
-    res +
-    `</ul>`;
+  return res + `</ul>`;
 }
 
 
@@ -173,9 +170,6 @@ const form = `
     <h2>Add or update a post</h2>
     <form action="" method="POST" enctype="multipart/form-data"></form>
  </div>`;
-
-
-
 
 
 function makeMetabox(title, element) {
@@ -191,14 +185,13 @@ function makeMetabox(title, element) {
 }
 
 
-
-const template = `<script src="script.js"></script>`
+const template = `<script type="module" src="script.js"></script>`
 
 export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = container + makeTabMenu(json) + form +  `</div>` + template;
+  const html = style + container + makeTabMenu(json) + form + `</div>` + template;
 
 
   // const title = makeMetabox("Title ",
