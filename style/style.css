@@ -103,7 +103,8 @@ h1 a {
 .accordion .link {
     cursor: pointer;
     display: block;
-    padding: 15px 15px 15px 42px;
+    text-align: center;
+    padding: 15px 15px 15px 15px;
     color: #4D4D4D;
     font-size: 14px;
     font-weight: 700;
