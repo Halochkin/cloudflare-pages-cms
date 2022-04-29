@@ -185,7 +185,10 @@ function makeMetabox(title, element) {
 }
 
 
-const template = `<script type="module" src="script.js"></script>`
+const template = `<script src="script.js">
+
+console.log("ass");
+</script>`
 
 export async function onRequest({params: {post_slug}, env}) {
 
