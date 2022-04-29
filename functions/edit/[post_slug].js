@@ -174,7 +174,7 @@ const form = `
 
 
 
-const template =`
+const template = (slug) => `
 <script >
 const form = document.querySelector("form");
 
@@ -197,7 +197,7 @@ const title = makeMetabox("Title ",
   \`<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>\`);
 
 [...document.querySelectorAll(".post_item")].map(item => item.addEventListener("click", function (e) {
-   e.preventDefault();
+   // e.preventDefault();
   const postType = this.getAttribute("type");
   console.log("click");
   if (postType === "video")
@@ -209,7 +209,7 @@ export async function onRequest({params: {post_slug}, env}) {
 
   const json = await env.POSTS.list();
 
-  const html = style + container + makeTabMenu(json) + form + `</div>` + template ;
+  const html = style + container + makeTabMenu(json) + form + `</div>` + template(post_slug) ;
 
 
 
