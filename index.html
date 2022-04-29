@@ -65,21 +65,21 @@
     `<input type="text" name="title" pattern="[a-zA-Z]{1}.*" onChange="makeSlug(this)">(title must start with a  character)<br>`);
 
   const shortDescription = makeMetabox("Short description",
-    `<textarea placeholder="Write several sentences here" type="text" name="short-text" size="30" required></textarea>`);
+    `<textarea placeholder="Write several sentences here" type="text" name="short_text" size="30" required></textarea>`);
 
   const fullDescription = makeMetabox("Full description",
-    `<textarea placeholder="Write full description here" class="widefat" rows="10" name="full-text" size="30"></textarea>`);
+    `<textarea placeholder="Write full description here" class="widefat" rows="10" name="full_text" size="30"></textarea>`);
 
   const youtubeUrl = makeMetabox("Youtube url",
-    `<input type="text" name="youtube-url-input" size="30" required />`);
+    `<input type="text" name="youtube_url" size="30" required />`);
 
   const producerUrl = makeMetabox("Producer url",
-    ` <input type="text" name="producer-url" placeholder="Producer website url" size="30" />`)
+    ` <input type="text" name="producer_url" placeholder="Producer website url" size="30" />`)
 
 
   const mainProducer = makeMetabox("Select main producer", json.keys.reduce(function (html, post) {
     if (post.metadata?.type === "producer") {
-      html += `<input type="radio" name="main-producer" value=${post.name} /><label for="main-producer">${post.name[0].toUpperCase() + post.name.slice(
+      html += `<input type="radio" name="main_producer" value=${post.name} /><label for="main_producer">${post.name[0].toUpperCase() + post.name.slice(
         1)}</label><br>`;
     }
     return html;
@@ -87,11 +87,11 @@
 
   const additionalProducers = makeMetabox("Select additional producers", json.keys.reduce(function (html, post) {
     if (post.metadata?.type === "producer") {
-      html += `<input type="checkbox" name="additional-producers" value=${post.name} /> ${post.name[0].toUpperCase() + post.name.slice(
+      html += `<input type="checkbox" name="additional_producers" value=${post.name} /> ${post.name[0].toUpperCase() + post.name.slice(
         1)}<br>`;
     }
     return html;
-  }, '') + '<input type="hidden" id="additional-producers" name="additional-producers" />');
+  }, '') + '<input type="hidden" id="additional-producers" name="additional_producers" />');
 
 
   const feturedImage = makeMetabox("Feature image", `<input type="file" name="image">`);
