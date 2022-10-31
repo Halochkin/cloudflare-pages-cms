@@ -94,6 +94,7 @@ h1 a {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+    border-bottom-color: blue;
 }
 
 .accordion .tab {
