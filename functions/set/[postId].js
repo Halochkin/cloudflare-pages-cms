@@ -9,6 +9,7 @@ async function saveFile(slug, formData, postId, env, KV_FILETABLE_NAME) {
 
 export async function onRequestPost({request, params: {postId: slug}, env}) {
   const formData = await FormDataPolyfish(request);
+  console.log("- - - - - - -", formData)
   await saveFile(slug, formData, "image", env, "IMG");
   await env.POSTS.put(slug, JSON.stringify(formData), {metadata: {...formData, timestamp: Date.now()}});
   return new Response(JSON.stringify(formData));

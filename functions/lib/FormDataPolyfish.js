@@ -157,8 +157,10 @@ export async function FormDataPolyfish(request) {
   for (let part of parseMimeMultipart(uint8Array)) {
     const key = part.headers[part.headers.length - 1].values[1].split("=")[1].slice(1, -1);
     const body = uint8Array.slice(part.index, part.length + part.index);
+
     if (part.headers.length === 1) {
       result[key] = textDecoder.decode(body);
+
     } else {
       const headers = {};
       for (let head of part.headers.slice(0, -1))

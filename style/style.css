@@ -151,16 +151,16 @@ h1 a {
 /**
  * Submenu
  -----------------------------*/
-.submenu {
-    background: #444359;
+.sub-menu {
+    /*background: #444359;*/
     font-size: 14px;
 }
 
-.submenu li {
+.sub-menu li {
     border-bottom: 1px solid #4b4a5e;
 }
 
-.submenu a {
+.sub-menu a {
     display: block;
     text-decoration: none;
     color: #d9d9d9;
@@ -171,16 +171,29 @@ h1 a {
     transition: all 0.25s ease;
 }
 
-.submenu a:hover {
+.sub-menu a:hover {
     background: #b63b4d;
     color: #FFF;
 }
 
-.tab-content{
+
+#tab-content{
     margin: 20px;
     background-color: wheat;
     padding: 20px;
 }
+
+
+.sub-menu-btn {
+    padding: 10px;
+    color: gray;
+    border-bottom: .5px dashed black;
+}
+
+.sub-menu-btn:hover {
+ transform: scale(1.1);
+}
+
 
 .add_ico{
     color: green;
@@ -191,7 +204,6 @@ h1 a {
     vertical-align: baseline;
     top: 15%;
 }
-
 
 .tab:hover > b {
     display: contents;

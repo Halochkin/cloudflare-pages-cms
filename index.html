@@ -76,7 +76,6 @@
   const producerUrl = makeMetabox("Producer url",
     ` <input type="text" name="producer_url" placeholder="Producer website url" size="30" />`)
 
-
   const mainProducer = makeMetabox("Select main producer", json.keys.reduce(function (html, post) {
     if (post.metadata?.type === "producer") {
       html += `<input type="radio" name="main_producer" value=${post.name} /><label for="main_producer">${post.name[0].toUpperCase() + post.name.slice(
@@ -93,12 +92,11 @@
     return html;
   }, '') + '<input type="hidden" id="additional-producers" name="additional_producers" />');
 
-
   const feturedImage = makeMetabox("Feature image", `<input type="file" name="image">`);
 
   //todo: ugly shit
   function preSubmit() {
-    let arr = [...document.querySelectorAll('input:checked[name=additional-producers')].map(function (element) {
+    let arr = [...document.querySelectorAll('input:checked[name=additional-producers]')].map(function (element) {
       return element.value
     });
     document.querySelector("#additional-producers").value = arr.join(",");
@@ -115,11 +113,9 @@
   [...document.querySelectorAll(".tab")].map(item => item.addEventListener("click", function () {
     const postType = this.getAttribute("type");
     if (postType === "video")
-      form.innerHTML = makeHiddenInput(
-        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer + additionalProducers + submitBtn;
+      form.innerHTML = makeHiddenInput(postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + mainProducer + additionalProducers + submitBtn;
     if (postType === "episode")
-      form.innerHTML = makeHiddenInput(
-        postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
+      form.innerHTML = makeHiddenInput(postType) + title + shortDescription + fullDescription + youtubeUrl + feturedImage + submitBtn;
     if (postType === "producer")
       form.innerHTML = makeHiddenInput(postType) + title + producerUrl + feturedImage + submitBtn;
     if (postType === "serie")

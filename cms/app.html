@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html _error:log>
+<head>
+    <link rel="stylesheet" href="../style/style.css">
+
+    <script
+            src="https://cdn.jsdelivr.net/combine/gh/orstavik/parse@v1.0.1/parse.js,gh/orstavik/ElementObserver@v.1.0.3/constructionFrame.js,gh/orstavik/customAttributes2@1.0.6/src/customAttributes.js,gh/orstavik/customAttributes2@1.0.6/src/basic_lib.js,gh/orstavik/customAttributes2@1.0.6/src/lib.js"
+            import:detail:element_tab-element="./Tab.js"
+    ></script>
+
+    <script src="./lib.js"></script>
+    <script>
+      function _do(e, _, method) {
+        return this.ownerElement[method](e), e;
+      }
+
+      customReactions.define("changemainproducer", function (e){
+        debugger
+      });
+
+
+      customReactions.defineAll({
+        throttle: throttle,
+        render: render,
+        fetch: ffetch,
+        prevent: prevent,
+        log: logError,
+        submit: dispatchClone,  //lib.dispatchClone
+        state: dispatchDetail,   //lib.dispatchCustom
+        doedit: dispatchDetail,  //lib.dispatchCustom
+        do: elementCallback,
+        detail: eventProps
+        //window for the properties on the window.
+        //if the final property is a method, then call that method with the argument in. and return the result.
+        //else, return the final property.
+      });
+
+      function define(moduleOrEvent, unit, tag = unit) {
+        if (moduleOrEvent instanceof Event)
+          moduleOrEvent = moduleOrEvent.detail;
+        unit = toPascalCase(unit);
+        const def = moduleOrEvent[unit] || window[unit];
+        if (def instanceof HTMLElement)
+          customElements.define(tag, def);
+        else if (def instanceof Attr)
+          customAttributes.define(tag, def);
+        else if (def instanceof Function)
+          customReactions.define(tag, def);
+        else
+          throw new Error("You cannot define the following entry: ", def);
+        return moduleOrEvent;
+      }
+
+
+
+    </script>
+</head>
+<body>
+
+<div id="container">
+    <div id="accordion" class="accordion" _state:detail:preplist:throttle:render>
+        <tab-element class="tab" click:do_showtab type="video">Videos</tab-element>
+        <tab-element class="tab" click:do_showtab type="serie">Series</tab-element>
+        <tab-element class="tab" click:do_showtab type="episode">Episodes</tab-element>
+        <tab-element class="tab" click:do_showtab type="producer">Producer</tab-element>
+    </div>
+
+    <tab-content id="tab-content">
+        <slot name="video"></slot>
+    </tab-content>
+</div>
+
+</body>
+</html>
